@@ -86,26 +86,18 @@
                                        Opacity="0.6"
                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                       Margin="6,2,6,2" />
-                            <Grid x:Name="PART_FloatingMessageContainer"
-                                  Grid.Column="0"
-                                  Grid.ColumnSpan="2"
-                                  Height="0"
-                                  IsHitTestVisible="False"
-                                  Margin="5,0"
-                                  Visibility="Visible">
+                                       Margin="4,2,2,2" />
+                            <ContentControl x:Name="PART_FloatingMessageContainer"
+                                            Style="{DynamicResource FloatingMessageContainerStyle}"
+                                            Grid.Column="0"
+                                            Grid.ColumnSpan="2">
                                 <TextBlock x:Name="PART_FloatingMessage"
                                            Text="{TemplateBinding Controls:TextBoxHelper.Watermark}"
-                                           FontSize="{DynamicResource FloatingWatermarkFontSize}"
                                            Foreground="{TemplateBinding Foreground}"
-                                           Opacity="0.6"
                                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <TextBlock.RenderTransform>
-                                        <TranslateTransform />
-                                    </TextBlock.RenderTransform>
-                                </TextBlock>
-                            </Grid>
+                                           VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                           Style="{DynamicResource MetroAutoCollapsingTextBlock}" />
+                            </ContentControl>
                             <Button x:Name="PART_ClearText"
                                     Grid.Column="1"
                                     Grid.RowSpan="2"
@@ -127,36 +119,20 @@
                                     Value="Visible" />
                         </DataTrigger>
 
-                        <!--Sets the MiniMessage visibility (Watermark must not be "" and FloatWatermark must be true)-->
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:TextBoxHelper.HasText)}"
-                                     Value="False">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource HideFloatingMessageStoryboard}" />
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Path=(Controls:TextBoxHelper.UseFloatingWatermark), RelativeSource={RelativeSource Self}}"
+                                           Value="True" />
+                                <Condition Binding="{Binding Path=(Controls:TextBoxHelper.HasText), RelativeSource={RelativeSource Self}}" 
+                                           Value="True"/>
+                            </MultiDataTrigger.Conditions>
+                            <MultiDataTrigger.EnterActions>
                                 <BeginStoryboard Storyboard="{StaticResource ShowFloatingMessageStoryboard}" />
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                        <!--To override Watermark == ""-->
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:TextBoxHelper.Watermark)}"
-                                     Value="">
-                            <DataTrigger.EnterActions>
+                            </MultiDataTrigger.EnterActions>
+                            <MultiDataTrigger.ExitActions>
                                 <BeginStoryboard Storyboard="{StaticResource HideFloatingMessageStoryboard}" />
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource ShowFloatingMessageStoryboard}" />
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
-                        <!--To override TextBoxHelper.UseFloatingWatermark == false-->
-                        <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:TextBoxHelper.UseFloatingWatermark)}"
-                                     Value="False">
-                            <DataTrigger.EnterActions>
-                                <BeginStoryboard Storyboard="{StaticResource HideFloatingMessageStoryboard}" />
-                            </DataTrigger.EnterActions>
-                            <DataTrigger.ExitActions>
-                                <BeginStoryboard Storyboard="{StaticResource ShowFloatingMessageStoryboard}" />
-                            </DataTrigger.ExitActions>
-                        </DataTrigger>
+                            </MultiDataTrigger.ExitActions>
+                        </MultiDataTrigger>
 
                         <!-- multiline textbox cannot bind to actual height so take the fallbach button width -->
                         <MultiTrigger>
@@ -336,8 +312,9 @@
                                 <Setter Property="Template">
                                     <Setter.Value>
                                         <ControlTemplate TargetType="{x:Type ToggleButton}">
-                                            <Grid>
+                                            <Grid x:Name="ToggleButtonRootGrid">
                                                 <Border x:Name="Background"
+                                                        CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.CornerRadius), Mode=OneWay}"
                                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                                         BorderBrush="{TemplateBinding BorderBrush}"
                                                         BorderThickness="{TemplateBinding BorderThickness}"
@@ -346,8 +323,8 @@
                                                 <Grid Margin="1">
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="*" />
-                                                        <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualHeight, Mode=OneWay}" />
-                                                        <ColumnDefinition Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Grid}}, Path=ActualHeight, Mode=OneWay}" />
+                                                        <ColumnDefinition Width="{Binding ElementName=ToggleButtonRootGrid, Path=ActualHeight, Mode=OneWay}" />
+                                                        <ColumnDefinition Width="{Binding ElementName=ToggleButtonRootGrid, Path=ActualHeight, Mode=OneWay}" />
                                                     </Grid.ColumnDefinitions>
 
                                                     <Button x:Name="PART_ClearText"
@@ -356,7 +333,7 @@
                                                             Style="{DynamicResource ChromelessButtonStyle}"
                                                             Foreground="{TemplateBinding Foreground}"
                                                             FontFamily="Marlett"
-                                                            Content="r"
+                                                            Content="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(Controls:TextBoxHelper.ButtonContent), Mode=OneWay}"
                                                             Visibility="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(Controls:TextBoxHelper.ClearTextButton), Converter={StaticResource BooleanToVisibilityConverter}}"
                                                             Controls:TextBoxHelper.IsClearTextButtonBehaviorEnabled="{Binding RelativeSource={RelativeSource AncestorType={x:Type ComboBox}}, Path=(Controls:TextBoxHelper.ClearTextButton), Mode=OneWay}"
                                                             IsTabStop="False" />
@@ -449,6 +426,7 @@
                             </Grid.ColumnDefinitions>
 
                             <ToggleButton x:Name="PART_DropDownToggle"
+                                          Controls:ControlsHelper.CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.CornerRadius), Mode=OneWay}"
                                           Grid.ColumnSpan="3"
                                           Style="{DynamicResource comboToggleStyle}"
                                           SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
@@ -461,31 +439,27 @@
                                           VerticalAlignment="Stretch"
                                           KeyboardNavigation.IsTabStop="False" />
 
-                            <Border x:Name="EditableTextBoxBorder"
-                                    SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                    Visibility="Collapsed"
-                                    BorderBrush="Transparent"
-                                    BorderThickness="1,1,0,1"
-                                    Margin="0,0,-2,0"
-                                    Background="{TemplateBinding Background}">
-                                <TextBox x:Name="PART_EditableTextBox"
-                                         Style="{StaticResource EditableTextBoxStyle}"
-                                         HorizontalAlignment="Stretch"
-                                         SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
-                                         HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                         BorderThickness="0"
-                                         Background="{x:Null}"
-                                         Margin="0,0,0,-2"
-                                         Controls:TextBoxHelper.Watermark="{TemplateBinding Controls:TextBoxHelper.Watermark}"
-                                         MaxLength="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ComboBoxHelper.MaxLength), Mode=OneWay}"
-                                         CharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ComboBoxHelper.CharacterCasing), Mode=OneWay}"
-                                         Foreground="{TemplateBinding Foreground}"
-                                         Focusable="True"
-                                         IsReadOnly="{TemplateBinding IsReadOnly}"
-                                         FontFamily="{TemplateBinding FontFamily}"
-                                         FontSize="{TemplateBinding FontSize}" />
-                            </Border>
+                            <TextBox x:Name="PART_EditableTextBox"
+                                     Style="{StaticResource EditableTextBoxStyle}"
+                                     Visibility="Collapsed"
+                                     HorizontalAlignment="Stretch"
+                                     SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                     HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                     VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                     BorderThickness="0"
+                                     Background="{x:Null}"
+                                     Margin="1,1,0,-1"
+                                     Controls:TextBoxHelper.Watermark="{TemplateBinding Controls:TextBoxHelper.Watermark}"
+                                     Controls:TextBoxHelper.UseFloatingWatermark="{TemplateBinding Controls:TextBoxHelper.UseFloatingWatermark}"
+                                     Controls:TextBoxHelper.HasText="{TemplateBinding Controls:TextBoxHelper.HasText}"
+                                     Controls:TextBoxHelper.ButtonContent="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:TextBoxHelper.ButtonContent), Mode=OneWay}"
+                                     MaxLength="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ComboBoxHelper.MaxLength), Mode=OneWay}"
+                                     CharacterCasing="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ComboBoxHelper.CharacterCasing), Mode=OneWay}"
+                                     Foreground="{TemplateBinding Foreground}"
+                                     Focusable="True"
+                                     IsReadOnly="{TemplateBinding IsReadOnly}"
+                                     FontFamily="{TemplateBinding FontFamily}"
+                                     FontSize="{TemplateBinding FontSize}" />
                             <TextBlock x:Name="PART_WatermarkMessage"
                                        Text="{TemplateBinding Controls:TextBoxHelper.Watermark}"
                                        Padding="{TemplateBinding Padding}"
@@ -497,9 +471,9 @@
                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                        FontFamily="{TemplateBinding FontFamily}"
                                        FontSize="{TemplateBinding FontSize}"
-                                       Margin="8,2,4,2" />
+                                       Margin="6,2,6,2" />
                             <Grid x:Name="ContentSite"
-                                  Margin="7 0 0 0">
+                                  Margin="7 0 4 0">
                                 <ContentPresenter ContentTemplate="{TemplateBinding SelectionBoxItemTemplate}"
                                                   ContentTemplateSelector="{TemplateBinding ItemTemplateSelector}"
                                                   Content="{TemplateBinding SelectionBoxItem}"
@@ -513,6 +487,7 @@
                         </Grid>
 
                         <Border x:Name="FocusBorder"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.CornerRadius), Mode=OneWay}"
                                 Grid.ColumnSpan="3"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 BorderBrush="{TemplateBinding BorderBrush}"
@@ -520,6 +495,7 @@
                                 Background="{x:Null}"
                                 Visibility="Collapsed" />
                         <Border x:Name="DisabledVisualElement"
+                                CornerRadius="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=(Controls:ControlsHelper.CornerRadius), Mode=OneWay}"
                                 Grid.ColumnSpan="3"
                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
                                 BorderBrush="{DynamicResource ControlsDisabledBrush}"
@@ -601,10 +577,13 @@
 
                         <DataTrigger Binding="{Binding RelativeSource={RelativeSource Self}, Path=(Controls:TextBoxHelper.ClearTextButton)}"
                                      Value="False">
-                            <Setter TargetName="EditableTextBoxBorder"
+                            <Setter TargetName="PART_EditableTextBox"
                                     Property="Grid.ColumnSpan"
                                     Value="2" />
                             <Setter TargetName="ContentSite"
+                                    Property="Grid.ColumnSpan"
+                                    Value="2" />
+                            <Setter TargetName="PART_WatermarkMessage"
                                     Property="Grid.ColumnSpan"
                                     Value="2" />
                         </DataTrigger>
@@ -612,7 +591,7 @@
                                  Value="True">
                             <Setter Property="IsTabStop"
                                     Value="false" />
-                            <Setter TargetName="EditableTextBoxBorder"
+                            <Setter TargetName="PART_EditableTextBox"
                                     Property="Visibility"
                                     Value="Visible" />
                             <Setter TargetName="ContentSite"

@@ -89,6 +89,7 @@
     <Compile Include="Behaviours\BindableResourceBehavior.cs" />
     <Compile Include="Behaviours\BorderlessWindowBehavior.cs" />
     <Compile Include="Controls\ButtonsAlignment.cs" />
+    <Compile Include="Controls\ContentControlEx.cs" />
     <Compile Include="Controls\Dialogs\DialogCoordinator.cs" />
     <Compile Include="Controls\Dialogs\DialogParticipation.cs" />
     <Compile Include="Behaviours\GlowWindowBehavior.cs" />
@@ -125,11 +126,15 @@
     <Compile Include="Controls\Helper\DataGridRowHelper.cs" />
     <Compile Include="Controls\Helper\ExpanderHelper.cs" />
     <Compile Include="Controls\Helper\GroupBoxHelper.cs" />
+    <Compile Include="Controls\Helper\MouseWheelChange.cs" />
+    <Compile Include="Controls\Helper\MouseWheelState.cs" />
     <Compile Include="Controls\Helper\PasswordBoxHelper.cs" />
     <Compile Include="Controls\Helper\ScrollBarHelper.cs" />
+    <Compile Include="Controls\Helper\SliderHelper.cs" />
     <Compile Include="Controls\Helper\TabControlHelper.cs" />
     <Compile Include="Controls\Helper\TextBoxHelper.cs" />
     <Compile Include="Controls\Helper\ToggleButtonHelper.cs" />
+    <Compile Include="Controls\Helper\VisibilityHelper.cs" />
     <Compile Include="Controls\LayoutInvalidationCatcher.cs" />
     <Compile Include="Controls\MetroAnimatedSingleRowTabControl.cs" />
     <Compile Include="Controls\MetroAnimatedTabControl.cs" />
@@ -137,6 +142,7 @@
     <Compile Include="Controls\MetroProgressBar.cs" />
     <Compile Include="Controls\MetroTabControl.cs" />
     <Compile Include="Controls\MetroTabItem.cs" />
+    <Compile Include="Controls\MetroThumb.cs" />
     <Compile Include="Controls\MetroWindowHelpers.cs" />
     <Compile Include="Controls\MultiFrameImage.cs" />
     <Compile Include="Controls\NumericUpDown.cs" />
@@ -311,6 +317,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Styles\Clean\CleanGroupBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Styles\Clean\CleanStatusBar.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -583,6 +593,10 @@
     <Page Include="Themes\SplitButton.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Themes\Thumb.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Themes\Tile.xaml">
       <SubType>Designer</SubType>

@@ -1,44 +1,61 @@
-## MahApps.Metro
+# MahApps.Metro
 
 A toolkit for creating metro-style WPF applications. Lots of goodness out-of-the box.
 
-[![Build status](https://img.shields.io/appveyor/ci/flagbug/mahapps-metro/master.svg?style=flat-square)](https://ci.appveyor.com/project/flagbug/mahapps-metro/branch/master)
+[![Gitter](https://img.shields.io/badge/Gitter-Join%20Chat-green.svg?style=flat-square)](https://gitter.im/MahApps/MahApps.Metro)
+
+[![TeamCity](https://img.shields.io/teamcity/http/builds.brendanforster.com/s/MahApps_MahAppsMetro.svg?style=flat-square&&label=TeamCity%20dev)]()
+[![TeamCity](https://img.shields.io/teamcity/http/builds.brendanforster.com/s/MahApps_MahAppsMetroMaster.svg?style=flat-square&&label=TeamCity%20rel)]()
+[![TeamCity](https://img.shields.io/teamcity/http/builds.brendanforster.com/s/MahApps_MahAppsMetroPullRequests.svg?style=flat-square&&label=TeamCity%20PRs)]()
+
 [![Release](https://img.shields.io/github/release/MahApps/MahApps.Metro.svg?style=flat-square)](https://github.com/MahApps/MahApps.Metro/releases/latest)
 [![Downloads](https://img.shields.io/nuget/dt/MahApps.Metro.svg?style=flat-square)](http://www.nuget.org/packages/MahApps.Metro/)
 [![Issues](https://img.shields.io/github/issues/MahApps/MahApps.Metro.svg?style=flat-square)](https://github.com/MahApps/MahApps.Metro/issues)
 
-![main demo window](https://raw.githubusercontent.com/MahApps/MahApps.Metro/master/docs/main_demo_window.png)
+![main demo window](./docs/main_demo_window.png)
 
-### Documentation
+![main demo window animated](./docs/main_demo_window.gif)
 
-Read it here: [http://mahapps.com](http://mahapps.com)
+## Documentation
 
-You can help keep the documentation up to date by submitting a pull request on the  [mahapps.github.com](https://github.com/MahApps/mahapps.github.com) repository. If you're unfamiliar with GitHub Pages, the help guides [here](https://help.github.com/pages/) are a good place to start.
+You can read the documentation on the web site: [http://mahapps.com](http://mahapps.com)  
+You can also help keep the documentation up to date by submitting a pull request on the  [mahapps.github.com](https://github.com/MahApps/mahapps.github.com) repository. If you're unfamiliar with GitHub Pages, the help guides [here](https://help.github.com/pages/) are a good place to start.
 
-### Icons
+## Release Notes
+
+- current [v1.2.0](./docs/release-notes/1.2.0.md)
+- all [other](./docs/release-notes/)
+
+## Icons
 
 MahApps.Metro has also an icon package used from [WindowsIcons](https://github.com/Templarian/WindowsIcons) by [Templarian](https://github.com/Templarian)
 
 You can download the Nuget package [here](https://www.nuget.org/packages/MahApps.Metro.Resources)
 
-### Styles
+## Styles
 
 `CheckBox` and `RadioButton` styles adapted from styles created by [Brian Lagunas of Infragistics](http://brianlagunas.com/free-metro-light-and-dark-themes-for-wpf-and-silverlight-microsoft-controls/).
 
-### Ran into an bug?
+## Contributing to this project
 
 Did you stumble upon a bug? Before reporting it to us, please check out the [FAQ](https://github.com/MahApps/MahApps.Metro/wiki/FAQ) to see if it is actually a bug. If you can not find anything related to your issue, feel free to report it to us in the issue tracker.
 
-#### Bug Reports
+If you've improved MahApps.Metro and think that other people would enjoy it, submit a pull request. Anyone and everyone is welcome to contribute. Please take a moment to review the [guidelines for contributing](CONTRIBUTING.md).
 
-Please read [this page](https://github.com/MahApps/MahApps.Metro/wiki/About-Bug-Reports) before submitting an issue.
+* [Bug reports](CONTRIBUTING.md#bugs)
+* [Feature requests](CONTRIBUTING.md#features)
+* [Pull requests](CONTRIBUTING.md#pull-requests)
 
-### Breaking Changes
+## Missing a control?
 
-* For version [0.11.3.1](https://github.com/MahApps/MahApps.Metro/wiki/Breaking-Changes-or-WTF-is-happening-with-the-ALPHA-version)
-* For version [0.14 to 1.0.0](https://github.com/MahApps/MahApps.Metro/blob/master/docs/v1.0-Migration-Guide.md)
+If you're looking for a control that we don't have, we have some friends who have made MA.M compatible controls. Check them out:
 
-### A short How To
+- [Loading indicators](https://github.com/100GPing100/LoadingIndicators.WPF) by [@100GPing100](https://github.com/100GPing100)
+- [MahApps.Metro.SimpleChildWindow](https://github.com/punker76/MahApps.Metro.SimpleChildWindow) A simple child window for MahApps.Metro
+- [Dragablz](https://github.com/ButchersBoy/Dragablz) Tearable tab control for WPF, which includes docking, tool windows and MDI. [http://dragablz.net](http://dragablz.net)
+- [MaterialDesignInXamlToolkit](https://github.com/ButchersBoy/MaterialDesignInXamlToolkit) Google Material Design in XAML & WPF, for C# & VB.Net [http://materialdesigninxaml.net](http://materialdesigninxaml.net)
+
+## A short How To
 
 Or, how to create a simple `MahApps.Metro` Application and a Window...
 
@@ -70,8 +87,9 @@ Or, how to create a simple `MahApps.Metro` Application and a Window...
                       Height="600"
                       Width="800">
   <Grid>
-    <!-- now your content -->
-  
+
+    <!-- your content -->
+
   </Grid>
 </controls:MetroWindow>
 ```
@@ -89,16 +107,21 @@ namespace WpfApplication
 }
 ```
 
-### Visual Studio Templates
+## Awesome tools which MahApps can use
 
-Yes we did it! We have now 4 simple templates to start with the awesome MahApps.Metro library.
+[![TeamCity](./docs/icon_TeamCity.png)](https://www.jetbrains.com/teamcity/)
+[![Resharper](./docs/icon_ReSharper.png)](https://www.jetbrains.com/resharper/)
+
+## Visual Studio Templates
+
+MahApps.Metro have 4 simple templates to start with the awesome MahApps.Metro library.
 
 * WPF MahApps.Metro Application (.NET4)
 * WPF MahApps.Metro Application (.NET45)
 * Visual Basic WPF MahApps.Metro Application (.NET45)
 * Window MahApps.Metro (WPF)
 
-Download this [Templates.zip](https://github.com/MahApps/MahApps.Metro/raw/master/Visual%20Studio%20Templates/Templates.zip) (templates are created with VS 2013) and extract it to your user template folder:
+Download this [Templates.zip](./Visual%20Studio%20Templates/Templates.zip) (templates are created with VS 2013) and extract it to your user template folder:
 
 ```
 c:\Users\<USER>\Documents\Visual Studio 2013\
@@ -108,22 +131,12 @@ Now you can choose the templates at the `New Project` dialog.
 
 ![](./docs/new_project_dialog.png)
 
-### Contributions
+## Breaking Changes
 
-If you've improved MahApps.Metro and think that other people would enjoy it, submit a pull request.
+* For version [0.11.3.1](https://github.com/MahApps/MahApps.Metro/wiki/Breaking-Changes-or-WTF-is-happening-with-the-ALPHA-version)
+* For version [0.14 to 1.0.0](./docs/v1.0-Migration-Guide.md)
 
-### Chatroom
-
-Drop in on the Gitter room - https://gitter.im/MahApps/MahApps.Metro - if you want to ask a question or discuss something with the team.
-
-### Missing a control?
-
-If you're looking for a control that we don't have, we have some friends who have made MA.M compatible controls. Check them out:
-
-- [Loading indicators](https://github.com/100GPing100/LoadingIndicators.WPF) by [@100GPing100](https://github.com/100GPing100)
-- [Dragablz - TabControl with Chrome style tearing, and docking/tool window/MDI support](https://github.com/ButchersBoy/Dragablz)
-
-### Licence
+## Licence
 
 Microsoft Public License (Ms-PL)
 
