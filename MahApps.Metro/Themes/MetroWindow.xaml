@@ -589,9 +589,8 @@
         <Setter Property="Behaviours:StylizedBehaviors.Behaviors">
             <Setter.Value>
                 <Behaviours:StylizedBehaviorCollection>
-                    <Behaviours:BorderlessWindowBehavior />
+                    <Behaviours:BorderlessWindowBehavior ResizeBorderThickness="2"/>
                     <Behaviours:WindowsSettingBehaviour />
-                    <Behaviours:GlowWindowBehavior />
                 </Behaviours:StylizedBehaviorCollection>
             </Setter.Value>
         </Setter>

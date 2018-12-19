@@ -24,11 +24,20 @@ namespace MahApps.Metro.Behaviours
         private PropertyChangeNotifier topMostChangeNotifier;
         private bool savedTopMost;
 
+        public double ResizeBorderThickness
+        {
+            get { return (double)GetValue(ResizeBorderThicknessProperty); }
+            set { SetValue(ResizeBorderThicknessProperty, value); }
+        }
+
+        public static readonly DependencyProperty ResizeBorderThicknessProperty =
+            DependencyProperty.Register("ResizeBorderThickness", typeof(double), typeof(BorderlessWindowBehavior), new PropertyMetadata(0.0));
+
         protected override void OnAttached()
         {
             windowChrome = new WindowChrome
             {
-                ResizeBorderThickness = new Thickness(0),
+                ResizeBorderThickness = new Thickness(ResizeBorderThickness),
                 CaptionHeight = 0, 
                 CornerRadius = new CornerRadius(0), 
                 GlassFrameThickness = new Thickness(0), 
