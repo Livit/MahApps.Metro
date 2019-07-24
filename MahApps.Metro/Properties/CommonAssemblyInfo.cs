@@ -16,6 +16,6 @@ using System.Runtime.InteropServices;
 
 [assembly: AssemblyVersion("0.11.0.0")]
 [assembly: AssemblyFileVersion("0.11.0.0")]
-[assembly: AssemblyInformationalVersion("Built from hash \'49a26a71\'")]
+[assembly: AssemblyInformationalVersion("Built from hash \'b68f82f7\'")]
 
 

@@ -3,7 +3,7 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                       xmlns:winForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
-                      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+                      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                       xmlns:behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
                       WindowTransitionsEnabled="False"
                       Title="Interop Demo"

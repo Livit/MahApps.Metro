@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using System.Windows;
-using System.Windows.Interactivity;
+using Microsoft.Xaml.Behaviors;
 using System.Windows.Interop;
 using MahApps.Metro.Controls;
 using System.Windows.Threading;

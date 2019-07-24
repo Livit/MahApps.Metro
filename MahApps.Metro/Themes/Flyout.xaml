@@ -1,7 +1,7 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:Controls="clr-namespace:MahApps.Metro.Controls"
-                    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+                    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
                     xmlns:Actions="clr-namespace:MahApps.Metro.Actions">
 
     <ResourceDictionary.MergedDictionaries>
