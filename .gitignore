@@ -24,6 +24,7 @@ bld/
 
 # Misc
 packages/
+/.vs
 
 # Roslyn cache directories
 *.ide/
